@@ -1,26 +1,26 @@
 import React, { Component } from 'react'
-// this.props.contacts is array which has map() method.
-class ListContacts extends Component {
-  render() {
-  	return(
-        <ol className="contact-list">
-  			{this.props.contacts.map((contact) => 
-  				<li key={contact.id} className="contact-list-item">
-  					<div className="contact-avatar" style={{
-  						backgroundImage: `url(${contact.avatarURL})`
-  					}}/>
-  					<div className="contact-details">
-  						<p>{contact.name}</p>
-  						<p>{contact.email}</p>
-  					</div>
-            <button className="contact-remove">
-              Remove
-            </button>
-  				</li>
-  				)}
-  		</ol>
-  	)
-  }
+
+// class can be refactored as stateless functional components
+// remove render() and this.props->props and add props as argument for function.
+function ListContacts (props) {
+  return (
+      <ol className="contact-list">
+      {props.contacts.map((contact) => 
+        <li key={contact.id} className="contact-list-item">
+          <div className="contact-avatar" style={{
+            backgroundImage: `url(${contact.avatarURL})`
+          }}/>
+          <div className="contact-details">
+            <p>{contact.name}</p>
+            <p>{contact.email}</p>
+          </div>
+          <button className="contact-remove">
+            Remove
+          </button>
+        </li>
+        )}
+    </ol>
+    )
 }
 
 export default ListContacts
