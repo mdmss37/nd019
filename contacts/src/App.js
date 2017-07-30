@@ -4,6 +4,7 @@ import ListContacts from "./ListContacts"
 import CreateContact from "./CreateContact"
 import * as ContactsAPI from "./utils/ContactsAPI" 
 
+
 class App extends Component {
   state = {
     // Route will handle this
@@ -12,17 +13,25 @@ class App extends Component {
   }
 
   componentDidMount() {
-    ContactsAPI.getAll().then((contacts) => {
+    ContactsAPI.getAll().then(contacts => {
       this.setState({contacts:contacts})
     })
   }
 
   removeContact = (contact) => {
-    this.setState((state) => ({
+    this.setState(state => ({
       contacts: state.contacts.filter((c) => c.id !== contact.id )
     }))
 
     ContactsAPI.remove(contact)
+  }
+
+  createContact = (contact) => {
+    ContactsAPI.create(contact).then(contact => {
+      this.setState(state => ({
+        contacts: state.contacts.concat([contact])
+      }))
+    })
   }
 
   render() {
@@ -37,9 +46,16 @@ class App extends Component {
             //   this.setState({screen: "create"})
             // }}
           />
-        )}/>
+      )}/>
 
-        <Route path="/create" component={CreateContact}/>
+        <Route path="/create" render={({ history })=>(
+          <CreateContact
+            onCreateContact={(contact) => {
+              this.createContact(contact)
+              history.push("/")
+            }}
+          />
+       )}/>
       </div>
     )
   }
