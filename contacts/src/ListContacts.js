@@ -60,7 +60,7 @@ class ListContacts extends Component {
               </button>
             </div>
           )}
-
+        
         <ol className="contact-list">
           {showingContacts.map((contact) => 
             <li key={contact.id} className="contact-list-item">
@@ -83,6 +83,5 @@ class ListContacts extends Component {
 }
 
 export default ListContacts
-
 
   
