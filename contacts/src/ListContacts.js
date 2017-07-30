@@ -50,7 +50,7 @@ class ListContacts extends Component {
             onChange={(event) => this.updateQuery(event.target.value)}
           />
           <Link 
-            to="#create" 
+            to="/create" 
             /* onClick={this.props.onNavigate} Link will hadle this */
             className="add-contact">
             Add Contact Here</Link>
