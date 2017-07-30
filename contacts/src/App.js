@@ -35,7 +35,7 @@ class App extends Component {
             // below is handled with Route, with state screen
             // onNavigate={() => {
             //   this.setState({screen: "create"})
-            }} 
+            // }}
           />
         )}/>
 
